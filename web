@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humanity Project - Desa Kalu-Kaluku | Kolaka Utara</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Inter & Plus Jakarta Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        earth: {
+                            50: '#fdf8f6',
+                            100: '#f2e8e5',
+                            500: '#b45309',
+                            800: '#78350f',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .hero-gradient { background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(20, 83, 45, 0.65) 100%); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo / Brand -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold text-xl shadow-md group-hover:bg-brand-700 transition">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <div>
+                        <span class="block font-heading font-bold text-slate-900 text-lg leading-tight">KALU-KALUKU</span>
+                        <span class="block text-xs font-semibold text-brand-600 tracking-wider uppercase">Humanity Project</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex items-center gap-6 font-medium text-sm text-slate-600">
+                    <a href="#home" class="hover:text-brand-600 transition py-1 border-b-2 border-transparent hover:border-brand-600">Beranda</a>
+                    <a href="#profil" class="hover:text-brand-600 transition py-1 border-b-2 border-transparent hover:border-brand-600">Profil & Pemerintahan</a>
+                    <a href="#statistik" class="hover:text-brand-600 transition py-1 border-b-2 border-transparent hover:border-brand-600">Data & Statistik</a>
+                    <a href="#kegiatan" class="hover:text-brand-600 transition py-1 border-b-2 border-transparent hover:border-brand-600">Dokumentasi</a>
+                    <a href="#swot" class="hover:text-brand-600 transition py-1 border-b-2 border-transparent hover:border-brand-600">Analisis SWOT</a>
+                    <a href="#kontak" class="hover:text-brand-600 transition py-1 border-b-2 border-transparent hover:border-brand-600">Kontak</a>
+                    <button onclick="openInboxModal()" class="flex items-center gap-1.5 text-brand-700 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-full font-semibold transition border border-brand-200">
+                        <i class="fa-solid fa-inbox text-brand-600"></i> Kotak Pesan
+                        <span id="badge-count" class="bg-brand-600 text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold">0</span>
+                    </button>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden md:flex items-center gap-3">
+                    <button onclick="openInboxModal()" class="lg:hidden text-brand-700 bg-brand-50 p-2.5 rounded-full border border-brand-200 relative">
+                        <i class="fa-solid fa-inbox text-lg"></i>
+                        <span id="badge-count-mobile" class="absolute -top-1 -right-1 bg-brand-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+                    </button>
+                    <a href="#kontak" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-full font-medium text-sm transition shadow-sm hover:shadow-md flex items-center gap-2">
+                        <i class="fa-regular fa-paper-plane"></i> Hubungi Kami
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-btn" class="lg:hidden p-2 text-slate-600 hover:text-slate-900 focus:outline-none" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" class="mobile-link block py-2 px-3 rounded-lg text-slate-700 font-medium hover:bg-slate-50">Beranda</a>
+            <a href="#profil" class="mobile-link block py-2 px-3 rounded-lg text-slate-700 font-medium hover:bg-slate-50">Profil & Pemerintahan</a>
+            <a href="#statistik" class="mobile-link block py-2 px-3 rounded-lg text-slate-700 font-medium hover:bg-slate-50">Data & Statistik</a>
+            <a href="#kegiatan" class="mobile-link block py-2 px-3 rounded-lg text-slate-700 font-medium hover:bg-slate-50">Dokumentasi</a>
+            <a href="#swot" class="mobile-link block py-2 px-3 rounded-lg text-slate-700 font-medium hover:bg-slate-50">Analisis SWOT</a>
+            <a href="#kontak" class="mobile-link block py-2 px-3 rounded-lg text-slate-700 font-medium hover:bg-slate-50">Kontak</a>
+            <button onclick="openInboxModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="w-full text-left flex items-center justify-between py-2 px-3 rounded-lg bg-brand-50 text-brand-700 font-bold border border-brand-200">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-inbox text-brand-600"></i> Kotak Pesan & Aspirasi</span>
+                <span id="badge-count-mobile-menu" class="bg-brand-600 text-white text-xs px-2 py-0.5 rounded-full">0</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- 1. HALAMAN UTAMA (HOME) HERO SECTION -->
+        <section id="home" class="relative bg-slate-900 text-white min-h-[85vh] flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="67e845fa-c166-4694-8d34-81a4a48de5c8.png" alt="" class="w-full h-full object-cover">
+                <div class="absolute inset-0 hero-gradient"></div>
+            </div>
+
+            <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-100 text-xs sm:text-sm font-semibold uppercase tracking-wider mb-6 shadow-sm">
+                    <i class="fa-solid fa-heart text-red-400"></i> Pengabdian Mahasiswa Humanity Project 2026
+                </span>
+                
+                <h1 class="font-heading text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                    Membangun Desa Bersama Hati, Menebar Inspirasi untuk Kalu-Kaluku Mandiri
+                </h1>
+                
+                <p class="text-slate-200 text-base sm:text-xl max-w-3xl mx-auto font-light leading-relaxed mb-8">
+                    Selamat datang di ruang digital resmi pengabdian kami! Platform ini hadir sebagai jembatan informasi, wadah transparansi kegiatan, serta langkah awal digitalisasi Desa Kalu-Kaluku, Kecamatan Kodeoha, Kabupaten Kolaka Utara, Sulawesi Tenggara.
+                </p>
+
+                <!-- Quick Stats Badge Bar -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto mb-10 text-left">
+                    <div class="bg-white/10 backdrop-blur-md border border-white/15 p-3 rounded-2xl">
+                        <span class="block text-xs text-brand-200 uppercase tracking-wider font-semibold">Total Penduduk</span>
+                        <span class="text-xl font-bold font-heading">1.133 Jiwa</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md border border-white/15 p-3 rounded-2xl">
+                        <span class="block text-xs text-brand-200 uppercase tracking-wider font-semibold">Jumlah KK</span>
+                        <span class="text-xl font-bold font-heading">335 KK</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md border border-white/15 p-3 rounded-2xl">
+                        <span class="block text-xs text-brand-200 uppercase tracking-wider font-semibold">Wilayah Dusun</span>
+                        <span class="text-xl font-bold font-heading">5 Dusun</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md border border-white/15 p-3 rounded-2xl">
+                        <span class="block text-xs text-brand-200 uppercase tracking-wider font-semibold">Perkebunan</span>
+                        <span class="text-xl font-bold font-heading">±2.000 Ha</span>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#profil" class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white px-8 py-3.5 rounded-full font-semibold transition shadow-lg hover:shadow-emerald-900/30">
+                        Jelajahi Profil Desa
+                    </a>
+                    <a href="#statistik" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/30 px-8 py-3.5 rounded-full font-semibold backdrop-blur-sm transition">
+                        Lihat Data & Statistik
+                    </a>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-0 inset-x-0 z-10 leading-none">
+                <svg class="w-full h-12 sm:h-20 text-slate-50" viewBox="0 0 1440 120" fill="none" preserveAspectRatio="none">
+                    <path d="M0,32L60,42.7C120,53,240,75,360,80C480,85,600,75,720,64C840,53,960,43,1080,48C1200,53,1320,75,1380,85.3L1440,96L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z" fill="currentColor"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- 2. PROFIL DESA KALU-KALUKU & PEMERINTAHAN -->
+        <section id="profil" class="py-20 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 mb-2">Mengenal Lebih Dekat</h2>
+                    <p class="font-heading text-3xl sm:text-4xl font-bold text-slate-900">Profil Desa & Struktur Pemerintahan</p>
+                    <div class="w-20 h-1 bg-brand-500 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <!-- Geografi & Potensi Grid -->
+                <div class="grid md:grid-cols-2 gap-8 lg:gap-12 mb-16 items-center">
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-100 text-brand-700 flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                            </div>
+                            <h3 class="font-heading text-xl font-bold text-slate-900 mb-3">Letak & Batas Wilayah</h3>
+                            <p class="text-slate-600 leading-relaxed mb-4">
+                                Desa Kalu-Kaluku terletak di Kecamatan Kodeoha, Kabupaten Kolaka Utara, Sulawesi Tenggara. Jarak ke ibukota kabupaten sekitar 22 km dan ke ibukota provinsi sekitar 358 km. Desa ini resmi berdiri pada tahun 1998 dan terdiri dari 5 dusun.
+                            </p>
+                            <div class="grid grid-cols-2 gap-2 text-xs font-medium text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <div><strong>Utara:</strong> Desa Lametuna</div>
+                                <div><strong>Selatan:</strong> Desa Selat Bone</div>
+                                <div><strong>Barat:</strong> Desa Maruge</div>
+                                <div><strong>Timur:</strong> Desa Awo</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100">
+                            <div class="w-12 h-12 rounded-xl bg-amber-100 text-earth-800 flex items-center justify-center text-xl mb-4">
+                                <i class="fa-solid fa-wheat-awn"></i>
+                            </div>
+                            <h3 class="font-heading text-xl font-bold text-slate-900 mb-3">Potensi Utama Desa</h3>
+                            <p class="text-slate-600 leading-relaxed">
+                                Perekonomian ditopang oleh perkebunan luas (±2.000 Ha) dengan komoditas unggulan seperti <strong class="text-slate-800">kakao, kelapa dan cengkeh</strong>, sektor pertanian, perikanan pesisir, serta kolam air tawar seluas ±10 Ha. Kekuatan terbesar desa ini terletak pada semangat gotong royong warga.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-heading text-xl font-bold text-slate-900 flex items-center gap-2">
+                                    <i class="fa-solid fa-users-gear text-brand-600"></i> Perangkat Desa
+                                </h3>
+                                <span class="text-xs bg-brand-50 text-brand-700 px-3 py-1 rounded-full font-semibold">Periode 2026</span>
+                            </div>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex justify-between py-2 border-b border-slate-100">
+                                    <span class="text-slate-500">Kepala Desa</span>
+                                    <span class="font-bold text-slate-800">Ahmad Randi, SE</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-100">
+                                    <span class="text-slate-500">Sekretaris Desa</span>
+                                    <span class="font-bold text-slate-800">Sopian, SP</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-100">
+                                    <span class="text-slate-500">Ketua BPD</span>
+                                    <span class="font-bold text-slate-800">Cakeruddin</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-100">
+                                    <span class="text-slate-500">Kasi Pemerintahan</span>
+                                    <span class="font-bold text-slate-800">Amirullah</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-100">
+                                    <span class="text-slate-500">Kasi Pelayanan & Kesejahteraan</span>
+                                    <span class="font-bold text-slate-800">Irman</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-slate-100">
+                                    <span class="text-slate-500">Kaur Keuangan</span>
+                                    <span class="font-bold text-slate-800">Dini Natasya</span>
+                                </div>
+                                <div class="flex justify-between py-2">
+                                    <span class="text-slate-500">Kaur Umum & Perencanaan</span>
+                                    <span class="font-bold text-slate-800">Sahrir Efendi</span>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-slate-100 text-xs text-slate-500 grid grid-cols-5 gap-1 text-center">
+                                <div class="bg-slate-50 p-2 rounded"><strong>Dus I</strong><br>Rusman</div>
+                                <div class="bg-slate-50 p-2 rounded"><strong>Dus II</strong><br>Hasriani</div>
+                                <div class="bg-slate-50 p-2 rounded"><strong>Dus III</strong><br>Sulaeman</div>
+                                <div class="bg-slate-50 p-2 rounded"><strong>Dus IV</strong><br>Rahmat</div>
+                                <div class="bg-slate-50 p-2 rounded"><strong>Dus V</strong><br>Asis</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visi & Misi Card -->
+                <div class="bg-white rounded-3xl shadow-sm border border-slate-200/80 p-8 sm:p-12 mb-16">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-landmark"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-heading text-2xl font-bold text-slate-900">Visi, Misi & Motto Desa</h3>
+                            <p class="text-xs text-slate-500">Arah pembangunan Desa Kalu-Kaluku</p>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-12 gap-8">
+                        <div class="md:col-span-5 bg-brand-50 rounded-2xl p-6 sm:p-8 border border-brand-100 flex flex-col justify-center">
+                            <span class="text-xs font-bold text-brand-700 tracking-wider uppercase mb-2">Visi & Motto Desa</span>
+                            <blockquote class="text-slate-800 font-heading font-semibold text-lg sm:text-xl italic leading-snug mb-4">
+                                "Membangun Desa Kalu-Kaluku yang jujur, adil, sejahtera, berbudaya dan berakhlak mulia berlandas gotong royong."
+                            </blockquote>
+                            <div class="inline-block bg-brand-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg w-fit">
+                                Motto: "Maju Desaku Bahagia Wargaku"
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-7 space-y-4">
+                            <span class="text-xs font-bold text-slate-400 tracking-wider uppercase block mb-1">Misi Pemerintah Desa</span>
+                            <ol class="space-y-3 font-medium text-slate-700 text-sm">
+                                <li class="flex items-start gap-3 p-3 bg-slate-50 rounded-xl">
+                                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs font-bold">1</span>
+                                    <span>Mewujudkan pemerintahan desa yang jujur dan berwibawa dengan pengambilan keputusan yang cepat dan tepat.</span>
+                                </li>
+                                <li class="flex items-start gap-3 p-3 bg-slate-50 rounded-xl">
+                                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs font-bold">2</span>
+                                    <span>Mengedepankan kejujuran dan musyawarah mufakat dalam kehidupan sehari-hari, baik dengan pemerintahan maupun dengan masyarakat desa.</span>
+                                </li>
+                                <li class="flex items-start gap-3 p-3 bg-slate-50 rounded-xl">
+                                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs font-bold">3</span>
+                                    <span>Meningkatkan profesionalitas dan mengaktifkan seluruh perangkat desa.</span>
+                                </li>
+                                <li class="flex items-start gap-3 p-3 bg-slate-50 rounded-xl">
+                                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs font-bold">4</span>
+                                    <span>Mewujudkan sarana dan prasarana desa yang memadai.</span>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. DATA & STATISTIK DESA (MAPPING REPORT DATA) -->
+        <section id="statistik" class="py-20 bg-white border-t border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 mb-2">Transparansi Data</h2>
+                    <p class="font-heading text-3xl sm:text-4xl font-bold text-slate-900">Statistik & Kependudukan Desa</p>
+                
+                    <div class="w-20 h-1 bg-brand-500 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <!-- 3 Columns: Kependudukan, Ketenagakerjaan, Pendidikan -->
+                <div class="grid lg:grid-cols-3 gap-8 mb-12">
+                    
+                    <!-- Kependudukan Per Dusun -->
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading text-lg font-bold text-slate-900">Demografi Penduduk</h3>
+                                <p class="text-xs text-slate-500">Total: 1.133 Jiwa (335 KK)</p>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto flex-grow">
+                            <table class="w-full text-xs text-left text-slate-700 mb-4">
+                                <thead class="bg-slate-200/60 uppercase font-bold text-slate-700">
+                                    <tr>
+                                        <th class="p-2">Dusun</th>
+                                        <th class="p-2 text-center">KK</th>
+                                        <th class="p-2 text-center">L</th>
+                                        <th class="p-2 text-center">P</th>
+                                        <th class="p-2 text-right">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200">
+                                    <tr>
+                                        <td class="p-2 font-medium">Dusun I</td>
+                                        <td class="p-2 text-center">93</td>
+                                        <td class="p-2 text-center">139</td>
+                                        <td class="p-2 text-center">133</td>
+                                        <td class="p-2 text-right font-bold">272</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 font-medium">Dusun II</td>
+                                        <td class="p-2 text-center">67</td>
+                                        <td class="p-2 text-center">107</td>
+                                        <td class="p-2 text-center">105</td>
+                                        <td class="p-2 text-right font-bold">212</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 font-medium">Dusun III</td>
+                                        <td class="p-2 text-center">58</td>
+                                        <td class="p-2 text-center">112</td>
+                                        <td class="p-2 text-center">130</td>
+                                        <td class="p-2 text-right font-bold">242</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 font-medium">Dusun IV</td>
+                                        <td class="p-2 text-center">64</td>
+                                        <td class="p-2 text-center">106</td>
+                                        <td class="p-2 text-center">121</td>
+                                        <td class="p-2 text-right font-bold">227</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 font-medium">Dusun V</td>
+                                        <td class="p-2 text-center">53</td>
+                                        <td class="p-2 text-center">85</td>
+                                        <td class="p-2 text-center">95</td>
+                                        <td class="p-2 text-right font-bold">180</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot class="bg-slate-100 font-bold">
+                                    <tr>
+                                        <td class="p-2">Total</td>
+                                        <td class="p-2 text-center">335</td>
+                                        <td class="p-2 text-center">549</td>
+                                        <td class="p-2 text-center">584</td>
+                                        <td class="p-2 text-right">1.133</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <p class="text-xs text-slate-500 italic">* Terdapat 40 KK dengan kepala keluarga perempuan di desa.</p>
+                    </div>
+
+                    <!-- Ketenagakerjaan -->
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading text-lg font-bold text-slate-900">Mata Pencaharian</h3>
+                                <p class="text-xs text-slate-500">Sektor utama perkebunan & nelayan</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm flex-grow">
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>Petani / Perkebunan</span>
+                                    <span>301 Jiwa</span>
+                                </div>
+                                <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-emerald-600 h-full rounded-full" style="width: 65%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>Nelayan Pesisir</span>
+                                    <span>114 Jiwa</span>
+                                </div>
+                                <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-blue-600 h-full rounded-full" style="width: 25%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>Pertukangan / Tukang</span>
+                                    <span>76 Jiwa</span>
+                                </div>
+                                <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-amber-600 h-full rounded-full" style="width: 15%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>PNS / Aparatur</span>
+                                    <span>14 Jiwa</span>
+                                </div>
+                                <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-purple-600 h-full rounded-full" style="width: 5%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-semibold mb-1">
+                                    <span>Pedagang / UMKM</span>
+                                    <span>4 - 10 Jiwa</span>
+                                </div>
+                                <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-rose-600 h-full rounded-full" style="width: 4%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-200 text-xs text-slate-600 flex justify-between">
+                            <span>Ternak Ayam: <strong>515</strong></span>
+                            <span>Ternak Kambing: <strong>14</strong></span>
+                            <span>Kolam Ikan: <strong>±10 Ha</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- Pendidikan -->
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading text-lg font-bold text-slate-900">Pendidikan</h3>
+                                <p class="text-xs text-slate-500">Tingkat pendidikan</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-2 text-xs mb-4">
+                            <div class="font-bold text-slate-700 uppercase tracking-wide text-[10px]">Tingkat Pendidikan Warga:</div>
+                            <div class="flex justify-between bg-white p-2 rounded-lg border border-slate-200">
+                                <span>Tidak Tamat SD</span>
+                                <span class="font-bold text-slate-800">287 Orang</span>
+                            </div>
+                            <div class="flex justify-between bg-white p-2 rounded-lg border border-slate-200">
+                                <span>Tamatan SD</span>
+                                <span class="font-bold text-slate-800">347 Orang</span>
+                            </div>
+                            <div class="flex justify-between bg-white p-2 rounded-lg border border-slate-200">
+                                <span>Tamatan SMP & SLTA</span>
+                                <span class="font-bold text-slate-800">289 Orang</span>
+                            </div>
+                            <div class="flex justify-between bg-white p-2 rounded-lg border border-slate-200">
+                                <span>Sarjana (Muda & S1)</span>
+                                <span class="font-bold text-brand-700">46 Orang</span>
+                            </div>
+                        </div>
+
+                        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. DOKUMENTASI KEGIATAN (HUMANITY PROJECT) -->
+        <section id="kegiatan" class="py-20 bg-slate-50 border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 mb-2">Aksi Nyata Pengabdian</h2>
+                    <p class="font-heading text-3xl sm:text-4xl font-bold text-slate-900">Dokumentasi & Program Kerja</p>
+                    <p class="text-slate-600 mt-4 leading-relaxed">
+                        Melalui semangat kolaborasi dan kepedulian nyata, kelompok mahasiswa Humanity Project hadir membersamai masyarakat Desa Kalu-Kaluku. Berikut adalah program kerja utama yang kami jalankan bersama warga:
+                    </p>
+                    <div class="w-20 h-1 bg-brand-500 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <!-- Program Cards Grid -->
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80" alt="Edukasi Anak" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-4 left-4 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">Pendidikan</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Edukasi Anak Ceria</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed flex-grow">
+                                Kegiatan bimbingan belajar kreatif dan peningkatan literasi guna memotivasi semangat belajar anak-anak usia sekolah dasar di Desa Kalu-Kaluku.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80" alt="Pemberdayaan Lingkungan" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-4 left-4 bg-emerald-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">Lingkungan</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Pemberdayaan & Kebersihan Lingkungan</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed flex-grow">
+                                Aksi kerja bakti gotong royong bersama warga untuk menciptakan lingkungan desa yang bersih, sehat, asri, dan berkelanjutan.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80" alt="Digitalisasi UMKM" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-4 left-4 bg-purple-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">Ekonomi Digital</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-heading text-xl font-bold text-slate-900 mb-2">Pengembangan UMKM & Digitalisasi Desa</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed flex-grow">
+                                Pelatihan pemasaran digital dasar serta pendampingan produk lokal untuk membantu memperluas jangkauan pasar hasil bumi dan usaha warga.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 5. ANALISIS SWOT DESA KALU-KALUKU -->
+        <section id="swot" class="py-20 bg-white border-t border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 mb-2">Kajian Strategis</h2>
+                    <p class="font-heading text-3xl sm:text-4xl font-bold text-slate-900">Analisis SWOT Desa</p>
+                    <p class="text-slate-600 mt-2 text-sm">Pemetaan potensi dan tantangan pembangunan Desa Kalu-Kaluku tahun 2026</p>
+                    <div class="w-20 h-1 bg-brand-500 mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Strengths -->
+                    <div class="bg-emerald-50/70 border border-emerald-100 rounded-3xl p-8 shadow-sm">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-xl font-bold shadow">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading text-xl font-bold text-slate-900">Strengths (Kekuatan)</h3>
+                                <p class="text-xs text-emerald-800 font-medium">Potensi internal utama</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-700">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
+                                <span>Lahan perkebunan sangat luas (±2.000 Ha) dengan komoditas unggulan kakao dan cengkeh.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
+                                <span>Wilayah strategis di dataran rendah pesisir dengan potensi kolam air tawar (±10 Ha) dan nelayan (114 jiwa).</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
+                                <span>Jarak relatif dekat ke ibukota kabupaten (hanya sekitar 22 km).</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
+                                <span>Struktur pemerintahan desa lengkap dan menjunjung tinggi gotong royong serta musyawarah mufakat.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Weaknesses -->
+                    <div class="bg-amber-50/70 border border-amber-100 rounded-3xl p-8 shadow-sm">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-amber-600 text-white flex items-center justify-center text-xl font-bold shadow">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading text-xl font-bold text-slate-900">Weaknesses (Kelemahan)</h3>
+                                <p class="text-xs text-amber-800 font-medium">Tantangan internal desa</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-700">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-exclamation text-amber-600 mt-1"></i>
+                                <span>Tingkat pendidikan warga didominasi tidak tamat SD / tamat SD (634 orang), sementara sarjana masih terbatas (46 orang).</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-exclamation text-amber-600 mt-1"></i>
+                                <span>Angka kemiskinan cukup tinggi dengan 275 KK berstatus keluarga miskin atau sangat miskin.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-circle-exclamation text-amber-600 mt-1"></i>
+                                <span>Terdapat lahan kritis tak terolah seluas ±140 Ha yang berpotensi untuk dioptimalkan.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 6. KONTAK & CALL TO ACTION (HUBUNGI KAMI) -->
+        <section id="kontak" class="py-20 bg-slate-900 text-white relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                
+                <div class="grid lg:grid-cols-12 gap-12 items-start">
+                    
+                    <div class="lg:col-span-5 space-y-8">
+                        <div>
+                            <span class="text-brand-400 font-semibold text-sm uppercase tracking-wider">Mari Berkolaborasi</span>
+                            <h2 class="font-heading text-3xl sm:text-4xl font-bold text-white mt-2">Hubungi Kami</h2>
+                            <p class="text-slate-300 mt-4 leading-relaxed">
+                                Mari berkolaborasi bersama kami! Punya pertanyaan, ide inovatif, kritik, saran, atau ingin berdiskusi seputar kemajuan Desa Kalu-Kaluku? Jangan ragu untuk menghubungi atau berkunjung langsung ke posko pengabdian kami.
+                            </p>
+                        </div>
+
+                        <div class="space-y-6 text-sm">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-white/10 text-brand-400 flex items-center justify-center flex-shrink-0 text-lg">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white uppercase text-xs tracking-wider">Alamat Kantor / Posko</h4>
+                                    <p class="text-slate-300 mt-1">Desa Kalu-Kaluku, Kec. Kodeoha, Kab. Kolaka Utara, Prov. Sulawesi Tenggara</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-white/10 text-brand-400 flex items-center justify-center flex-shrink-0 text-lg">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white uppercase text-xs tracking-wider">Instagram Resmi</h4>
+                                    <a href="https://instagram.com/humanityproject_kalu.kaluku?srtk=dWcwZzc0NzB4NTNm" target="_blank" class="text-brand-300 hover:text-white underline mt-1 block transition">@humanityproject_kalu.kaluku</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-white/10 text-brand-400 flex items-center justify-center flex-shrink-0 text-lg">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white uppercase text-xs tracking-wider">Telepon / WhatsApp</h4>
+                                    <a href="https://wa.me/6285194933909" target="_blank" class="text-brand-300 hover:text-white underline mt-1 block transition">+62 851-9493-3909</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-white/10 text-brand-400 flex items-center justify-center flex-shrink-0 text-lg">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white uppercase text-xs tracking-wider">Email Resmi</h4>
+                                    <a href="mailto:humanityproject.kalukaluku@gmail.com" class="text-brand-300 hover:text-white underline mt-1 block transition">humanityproject.kalukaluku@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 bg-white text-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl">
+                        <h3 class="font-heading text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-map text-brand-600"></i> Lokasi Peta Desa Kalu-Kaluku
+                        </h3>
+                        
+                        <div class="w-full h-64 bg-slate-100 rounded-2xl overflow-hidden mb-6 border border-slate-200 relative flex items-center justify-center">
+                            <iframe 
+                                title="Peta Kalu-Kaluku"
+                                class="w-full h-full border-0"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127000.0!2d120.8!3d-3.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwMTgnMDAuMCJTIDEyMMKwNDgnMDA.0IkE!5e0!3m2!1sid!2sid!4v1650000000000!5m2!1sid!2sid" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                            </iframe>
+                        </div>
+
+                        <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Nama Lengkap</label>
+                                    <input type="text" id="form-name" required placeholder="Nama Anda" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-600 text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Nomor WhatsApp</label>
+                                    <input type="tel" id="form-phone" required placeholder="0812xxxx" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-600 text-sm">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Pesan / Aspirasi</label>
+                                <textarea id="form-message-input" rows="3" required placeholder="Tuliskan ide, kritik, saran, atau pertanyaan Anda..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-600 text-sm"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3 rounded-xl transition shadow-md flex items-center justify-center gap-2">
+                                <i class="fa-regular fa-paper-plane"></i> Kirim Pesan
+                            </button>
+                        </form>
+                        
+                        <div id="form-message" class="hidden mt-4 p-3 bg-emerald-50 text-emerald-800 rounded-xl text-sm text-center font-medium border border-emerald-200">
+                            Terima kasih! Pesan/Aspirasi Anda berhasil dikirim dan tersimpan di menu Kotak Pesan.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL KOTAK PESAN & ASPIRASI -->
+    <div id="inbox-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-3xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh] border border-slate-100">
+            <!-- Modal Header -->
+            <div class="bg-slate-900 text-white px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-brand-500 flex items-center justify-center text-white font-bold">
+                        <i class="fa-solid fa-inbox"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-heading font-bold text-lg leading-tight">Kotak Pesan & Aspirasi Warga</h3>
+                        <p class="text-xs text-slate-400">Daftar masukan yang dikirim melalui formulir kontak</p>
+                    </div>
+                </div>
+                <button onclick="closeInboxModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content (List of messages) -->
+            <div id="inbox-list" class="p-6 overflow-y-auto space-y-4 flex-grow bg-slate-50">
+                <!-- Messages will be populated by JS -->
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="bg-white px-6 py-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                <span id="inbox-total-text">Total: 0 Pesan</span>
+                <div class="flex gap-2">
+                    <button onclick="clearAllMessages()" class="text-rose-600 hover:text-rose-700 font-semibold px-3 py-1.5 rounded-lg border border-rose-200 hover:bg-rose-50 transition">
+                        <i class="fa-regular fa-trash-can"></i> Hapus Semua
+                    </button>
+                    <button onclick="closeInboxModal()" class="bg-slate-800 hover:bg-slate-900 text-white font-semibold px-4 py-1.5 rounded-lg transition">
+                        Tutup
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-400 py-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+            <div>
+                &copy; 2026 Humanity Project - Desa Kalu-Kaluku. Kecamatan Kodeoha, Kolaka Utara, Sulawesi Tenggara.
+            </div>
+            <div class="flex gap-6">
+                <a href="#home" class="hover:text-white transition">Beranda</a>
+                <a href="#profil" class="hover:text-white transition">Profil</a>
+                <a href="#statistik" class="hover:text-white transition">Statistik</a>
+                <a href="#kegiatan" class="hover:text-white transition">Dokumentasi</a>
+                <a href="#swot" class="hover:text-white transition">SWOT</a>
+                <a href="#kontak" class="hover:text-white transition">Kontak</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Mobile Menu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Sample initial messages if empty
+        const initialMessages = [
+            {
+                id: 1,
+                name: "Pak Herman",
+                phone: "081234567890",
+                message: "Terima kasih mahasiswa Humanity Project sudah membantu kegiatan kerja bakti dan posyandu di Dusun I minggu lalu!",
+                date: "12 Okt 2026, 14:30 WITA"
+            },
+            {
+                id: 2,
+                name: "Siti Rahma",
+                phone: "082198765432",
+                message: "Mohon jadwal bimbingan belajar anak-anak di Posko KKN diperbanyak harinya ya kak.",
+                date: "14 Okt 2026, 09:15 WITA"
+            }
+        ];
+
+        // Load messages from localStorage or set default
+        function getMessages() {
+            const saved = localStorage.getItem('kalukaluku_messages');
+            if (saved) {
+                return JSON.parse(saved);
+            } else {
+                localStorage.setItem('kalukaluku_messages', JSON.stringify(initialMessages));
+                return initialMessages;
+            }
+        }
+
+        function saveMessages(msgs) {
+            localStorage.setItem('kalukaluku_messages', JSON.stringify(msgs));
+            updateBadges();
+        }
+
+        function updateBadges() {
+            const msgs = getMessages();
+            const count = msgs.length;
+            document.getElementById('badge-count').innerText = count;
+            document.getElementById('badge-count-mobile').innerText = count;
+            document.getElementById('badge-count-mobile-menu').innerText = count;
+            document.getElementById('inbox-total-text').innerText = `Total: ${count} Pesan`;
+        }
+
+        // Form Submit Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('form-name').value;
+            const phone = document.getElementById('form-phone').value;
+            const msgText = document.getElementById('form-message-input').value;
+
+            const now = new Date();
+            const formattedDate = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) + `, ${now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })} WITA`;
+
+            const newMessage = {
+                id: Date.now(),
+                name: name,
+                phone: phone,
+                message: msgText,
+                date: formattedDate
+            };
+
+            const msgs = getMessages();
+            msgs.unshift(newMessage);
+            saveMessages(msgs);
+
+            document.getElementById('contact-form').reset();
+            const messageAlert = document.getElementById('form-message');
+            messageAlert.classList.remove('hidden');
+            
+            setTimeout(() => {
+                messageAlert.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Inbox Modal Controllers
+        function openInboxModal() {
+            renderInboxList();
+            document.getElementById('inbox-modal').classList.remove('hidden');
+        }
+
+        function closeInboxModal() {
+            document.getElementById('inbox-modal').classList.add('hidden');
+        }
+
+        function renderInboxList() {
+            const container = document.getElementById('inbox-list');
+            const msgs = getMessages();
+
+            if (msgs.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-slate-400">
+                        <i class="fa-regular fa-folder-open text-4xl mb-3 block"></i>
+                        <p class="font-medium">Belum ada pesan atau aspirasi yang masuk.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = msgs.map(msg => `
+                <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm relative group hover:border-brand-500 transition">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-base">${escapeHtml(msg.name)}</h4>
+                            <a href="https://wa.me/${escapeHtml(msg.phone.replace(/[^0-9]/g, ''))}" target="_blank" class="text-xs text-brand-600 hover:underline flex items-center gap-1 font-semibold">
+                                <i class="fa-brands fa-whatsapp"></i> ${escapeHtml(msg.phone)}
+                            </a>
+                        </div>
+                        <span class="text-[11px] text-slate-400 font-medium">${msg.date}</span>
+                    </div>
+                    <p class="text-slate-700 text-sm leading-relaxed mt-2 bg-slate-50 p-3 rounded-xl border border-slate-100">${escapeHtml(msg.message)}</p>
+                    <div class="mt-3 flex justify-end">
+                        <button onclick="deleteMessage(${msg.id})" class="text-xs text-rose-500 hover:text-rose-700 font-medium flex items-center gap-1 transition">
+                            <i class="fa-regular fa-trash-can"></i> Hapus Pesan
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            updateBadges();
+        }
+
+        function deleteMessage(id) {
+            let msgs = getMessages();
+            msgs = msgs.filter(m => m.id !== id);
+            saveMessages(msgs);
+            renderInboxList();
+        }
+
+        function clearAllMessages() {
+            if (confirm('Apakah Anda yakin ingin menghapus semua pesan?')) {
+                saveMessages([]);
+                renderInboxList();
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.innerText = text;
+            return div.innerHTML;
+        }
+
+        // Initialize badges on page load
+        document.addEventListener('DOMContentLoaded', updateBadges);
+    </script>
+</body>
+</html>
